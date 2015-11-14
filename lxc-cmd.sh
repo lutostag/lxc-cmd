@@ -3,7 +3,7 @@ function lxc-ip {
 }
 
 function lxc-waiting {
-    while [ $(lxc-ip $1) == '-' ]; do sleep 0.1; done; sleep 0.5
+    while [ $(lxc-ip $1) == '-' ]; do sleep 0.1; done;
 }
 
 function lxc-ssh {
@@ -26,7 +26,6 @@ function lxc {
             lxc-start -dn $1; lxc-waiting $1;
         fi
         lxc-ssh
-        ssh $1 2>/dev/null
     fi
 }
 
@@ -37,4 +36,3 @@ function lxc-autocomplete {
 
 compctl -K lxc-autocomplete lxc
 compctl -K work-autocomplete work
-
