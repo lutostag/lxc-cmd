@@ -11,7 +11,7 @@ function lxc-ssh {
     sed '/^#lxc/q' < ~/.ssh/config > ~/.ssh/config_temp
     cat ~/.ssh/config_temp > ~/.ssh/config
     rm ~/.ssh/config_temp
-    lxc-ls --fancy | awk 'NR>2 && $3 != "-" {if(index($3,",") > 0) {ip=substr($3,1,index($3,",")-1) } else { ip=$3 }; print "Host "$1"\nForwardAgent yes\nStrictHostKeyChecking no\nUserKnownHostsFile=/dev/null\nUser ubuntu\nHostName " ip}' >> ~/.ssh/config
+    lxc-ls --fancy | awk 'NR>2 && $3 != "-" {if(index($3,",") > 0) {ip=substr($3,1,index($3,",")-1) } else { ip=$3 }; print "Host "$1"\nForwardAgent yes\nUser ubuntu\nHostName " ip "\nHostKeyAlias "$1}' >> ~/.ssh/config
 }
 
 function lxc {
