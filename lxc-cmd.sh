@@ -35,4 +35,3 @@ function lxc-autocomplete {
 
 
 compctl -K lxc-autocomplete lxc
-compctl -K work-autocomplete work
