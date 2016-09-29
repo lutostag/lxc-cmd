@@ -11,7 +11,7 @@ function lxd-ssh {
     sed '/^#lxc/q' < ~/.ssh/config > ~/.ssh/config_temp
     cat ~/.ssh/config_temp > ~/.ssh/config
     rm ~/.ssh/config_temp
-    lxc list -c n4 | grep -Ev '^\+-' | tail -n +2 | tr -d ' ' | awk -F '|' '$3 != "" {ip=substr($3,1,index($3,"(")-1); print "Host "$2"\nForwardAgent yes\nUser ubuntu\nHostName " ip "\nHostKeyAlias "$2}' >> ~/.ssh/config
+    lxc list -c n4 | grep -Ev '^\+-' | tail -n +2 | tr -d ' ' | grep -Ev '^\|\|' | awk -F '|' '$3 != "" {ip=substr($3,1,index($3,"(")-1); print "Host "$2"\nForwardAgent yes\nUser ubuntu\nHostName " ip "\nHostKeyAlias "$2}' >> ~/.ssh/config
 }
 
 function lxe {
